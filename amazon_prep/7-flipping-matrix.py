@@ -9,7 +9,6 @@ import re
 import sys
 
 
-
 #
 # Complete the 'flippingMatrix' function below.
 #
@@ -23,5 +22,6 @@ def flippingMatrix(matrix):
     sum = 0
     for i in range(n//2):
         for j in range(n//2):
-            sum += max(matrix[i][j], matrix[i][n-j-1], matrix[n-i-1][j], matrix[n-i-1][n-j-1])
+            sum += max(matrix[i][j], matrix[i][n-j-1],
+                       matrix[n-i-1][j], matrix[n-i-1][n-j-1])
     return sum

@@ -14,6 +14,7 @@ def find_longest_substring(s) -> int:
     for end in range(len(s)):
         if s[end] in char_index and start <= char_index[s[end]]:
             start = char_index[s[end]] + 1
+            print(start)
         else:
             max_length = max(max_length, end - start +1)
         char_index[s[end]] = end

@@ -49,4 +49,5 @@
 #     odd_nums = odd_nums + odd_nums[0: n-1]
 #     print(odd_nums)
 #     return sum(odd_nums)
-
+a = "010100101"
+a.index()

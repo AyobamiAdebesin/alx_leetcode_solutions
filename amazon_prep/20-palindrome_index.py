@@ -6,6 +6,7 @@ def palindromeIndex(s):
     while left < right:
         if s[left] != s[right]:
             if s[left+1:right+1] == s[left+1:right+1][::-1]:
+                print(s[left+1:right+1])
                 return left
             else:
                 return right
@@ -15,6 +16,4 @@ def palindromeIndex(s):
     return -1
 
 if __name__ == "__main__":
-    print(palindromeIndex("ayobami"))  # Output: 1
-    p = 12345
-    sum_ = sum(int(x) for x in str(p))
+    print(palindromeIndex("amabamaa"))  # Output: 1

@@ -67,7 +67,11 @@ class TreeNode:
         return ret
 
 def pre_order_traversal(root_node: TreeNode):
-    """ Pre order traversal of the binary tree """
+    """
+    Pre order traversal of a binary tree
+    
+    Root => Left child => Right Child
+    """
     if not root_node:
         return
     print(root_node.data)
@@ -75,7 +79,11 @@ def pre_order_traversal(root_node: TreeNode):
     pre_order_traversal(root_node.right_child)
 
 def in_order_traversal(root_node: TreeNode):
-    """ Inorder traversal of a binary tree """
+    """
+    Inorder traversal of a binary tree
+    
+    Left child => Root => Left Child
+    """
     if not root_node:
         return
     in_order_traversal(root_node.left_child)
@@ -83,7 +91,11 @@ def in_order_traversal(root_node: TreeNode):
     in_order_traversal(root_node.right_child)
 
 def post_order_traversal(root_node: TreeNode):
-    """ Post order traversal for a binary tree """
+    """
+    Post order traversal for a binary tree
+    
+    Left Child => Right Child => Root
+    """
     if not root_node:
         return
     post_order_traversal(root_node.left_child)
