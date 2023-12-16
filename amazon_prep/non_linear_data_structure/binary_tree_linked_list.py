@@ -66,6 +66,108 @@ class TreeNode:
             ret += child.__str__(level + 1)
         return ret
 
+
+class Node:
+    """ Node Class """
+
+    def __init__(self, data, next_node=None):
+        """Initializes a  Node"""
+        if not isinstance(data, int):
+            raise TypeError("value must be an integer")
+        self.__data = data
+        if next_node and not isinstance(next_node, Node):
+            raise TypeError("next_node must be a Node object")
+        self.__next_node = next_node
+
+    @property
+    def data(self) -> int:
+        """ Getter for value attribute """
+        return self.__data
+
+    @data.setter
+    def data(self, val: int):
+        """ Setter attribute for value """
+        if not isinstance(val, int):
+            raise TypeError("value must be an integer")
+        self.__data = val
+
+    @property
+    def next_node(self):
+        """ Getter for next_node attribute """
+        return self.__next_node
+
+    @next_node.setter
+    def next_node(self, val):
+        """ Setter for next_node attribute """
+        if not isinstance(val, Node) and val is not None:
+            raise TypeError("next_node must be a Node object")
+        else:
+            self.__next_node = val
+
+class Queue:
+    def __init__(self):
+        """ Initialize the head node """
+        self.head = None
+    
+    def isEmpty(self):
+        """ check if a queue is empty """
+        temp = self.head
+        return temp == None
+    def __str__(self):
+        """Print a queue """
+        if self.isEmpty():
+            return "queue is empty"
+        temp: Node = self.head
+        values = []
+        while temp is not None:
+            values.append(str(temp.data))
+            temp = temp.next_node
+        return "->".join(values)
+    def enqueue(self, val: int):
+        """ Enqueue an element to the back of the queue"""
+        temp : Node = self.head
+        try:
+            new_node = Node(val)
+        except Exception:
+            print("node value must be an integer")
+            return
+        if temp is not None:
+            while temp.next_node is not None:
+                temp = temp.next_node
+            temp.next_node = new_node
+            new_node.next_node = None
+        else:
+            self.head = new_node
+            new_node.next_node = None
+    
+    def dequeue(self):
+        """ Dequeue an element at the front of the queue """
+        temp = self.head
+        if not self.isEmpty():
+            self.head = temp.next_node
+        else:
+            return "queue is empty"
+        return temp.data
+    
+    def peek(self):
+        """ Peek at the element at the front of the queue """
+        if not self.isEmpty():
+            return self.head.data
+        return "queue is empty"
+    
+    def delete(self):
+        """ Delete a queue """
+        self.head = None
+    
+    def rotate(self):
+        """ Shuffle queue """
+        temp = self.dequeue()
+        self.enqueue(temp)
+
+
+
+
+
 def pre_order_traversal(root_node: TreeNode):
     """
     Pre order traversal of a binary tree
@@ -102,7 +204,25 @@ def post_order_traversal(root_node: TreeNode):
     post_order_traversal(root_node.right_child)
     print(f"{root_node.data}", end="=>")
 
+def level_order_traversal(root_node: TreeNode):
+    """ Use Queue data structure for level order traversal """
+    if not root_node:
+        return
+    else:
+        custom_queue = Queue()
+        # Insert the root node into the Queue
+        custom_queue.enqueue(root_node)
+        while not(custom_queue.isEmpty()):
+            root = custom_queue.dequeue()
+            print(root.value.data)
+            if root.value.left_child is not None:
+                custom_queue.enqueue(root.value.left_child)
+            if root.value.right_child is not None:
+                custom_queue.enqueue(root.value.right_child)
 
+
+
+    
 
 if __name__ == "__main__":
     root_node = TreeNode(1)
